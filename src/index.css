@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+:root {
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: translate(-50%, 6px) scale(0.85);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, 0) scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.12s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Ensure smooth touch interactions without accidental browser gestures */
+.touch-none {
+  touch-action: none;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+

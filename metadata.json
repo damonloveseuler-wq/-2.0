@@ -1,0 +1,6 @@
+{
+  "name": "Cheongiin 2.0 - Custom Korean Swipe Keyboard",
+  "description": "An enhanced Korean mobile keyboard featuring intuitive gesture swipes for vowels and consonants, QWERTY toggle, emoji, symbols, and Hanja support.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
