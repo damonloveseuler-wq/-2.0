@@ -1,5 +1,4 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
-import { HeaderBar } from './components/HeaderBar';
 import { DisplayArea } from './components/DisplayArea';
 import { KeyboardGrid } from './components/KeyboardGrid';
 import { EnglishKeyboard } from './components/EnglishKeyboard';
@@ -22,7 +21,7 @@ export default function App() {
     hapticEnabled: true,
     showHints: true,
     threshold: 14,
-    darkMode: false,
+    darkMode: true,
   });
 
   // Dark mode class on html
@@ -90,22 +89,6 @@ export default function App() {
     }
   };
 
-  const handleClear = () => {
-    saveHistory(inputLetters);
-    setInputLetters([]);
-    setLastFeedback('전체 삭제됨');
-    if (settings.soundEnabled) playKeySound('delete');
-  };
-
-  const handleUndo = () => {
-    if (history.length === 0) return;
-    const previous = history[history.length - 1];
-    setHistory((prev) => prev.slice(0, -1));
-    setInputLetters(previous);
-    setLastFeedback('실행 취소');
-    if (settings.soundEnabled) playKeySound('action');
-  };
-
   const handleSelectHanja = (hanjaChar: string) => {
     saveHistory(inputLetters);
     // Replace the last assembled character with the Hanja character
@@ -122,22 +105,12 @@ export default function App() {
   };
 
   return (
-    <main className="min-h-screen bg-[#f3f4f6] dark:bg-[#121316] text-neutral-900 dark:text-neutral-100 flex items-center justify-center p-2 sm:p-4 transition-colors">
-      <div className="w-full max-w-lg bg-white dark:bg-[#181a1e] rounded-2xl border border-neutral-200 dark:border-neutral-800 p-3 sm:p-4 flex flex-col gap-3 transition-all">
-        {/* Top Header */}
-        <HeaderBar
-          mode={mode}
-          settings={settings}
-          onUpdateSettings={(newSettings) => setSettings((prev) => ({ ...prev, ...newSettings }))}
-        />
-
+    <main className="min-h-screen bg-[#121316] text-neutral-100 flex items-center justify-center p-2 sm:p-4 transition-colors">
+      <div className="w-full max-w-lg bg-[#181a1e] rounded-2xl border border-neutral-800 p-3 sm:p-4 flex flex-col gap-3 transition-all shadow-xl">
         {/* Display Screen */}
         <DisplayArea
           text={assembledText}
           lastGestureFeedback={lastFeedback}
-          onClear={handleClear}
-          onUndo={handleUndo}
-          canUndo={history.length > 0}
         />
 
         {/* Dynamic Keyboard Section */}

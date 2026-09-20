@@ -1,18 +1,11 @@
 import React from 'react';
-import { Moon, Sun } from 'lucide-react';
-import { KeyboardMode, KeyboardSettings } from '../types';
+import { KeyboardMode } from '../types';
 
 interface HeaderBarProps {
   mode: KeyboardMode;
-  settings: KeyboardSettings;
-  onUpdateSettings: (newSettings: Partial<KeyboardSettings>) => void;
 }
 
-export const HeaderBar: React.FC<HeaderBarProps> = ({
-  mode,
-  settings,
-  onUpdateSettings,
-}) => {
+export const HeaderBar: React.FC<HeaderBarProps> = ({ mode }) => {
   const getModeLabel = () => {
     switch (mode) {
       case 'korean':
@@ -37,18 +30,6 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
         <span className="text-xs text-neutral-400 dark:text-neutral-500 font-normal">
           / {getModeLabel()}
         </span>
-      </div>
-
-      <div className="flex items-center gap-1">
-        <button
-          type="button"
-          onClick={() => onUpdateSettings({ darkMode: !settings.darkMode })}
-          className="p-1.5 text-neutral-500 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-md transition-colors"
-          title={settings.darkMode ? '라이트 모드' : '다크 모드'}
-          aria-label="테마 전환"
-        >
-          {settings.darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-        </button>
       </div>
     </header>
   );
